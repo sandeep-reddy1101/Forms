@@ -1,0 +1,193 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Register Form</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+            <div class="mb-3">
+              <label for="firstName" class="form-lable">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                class="form-control"
+                formControlName="firstName"
+                [ngClass]="{
+                  error:
+                    getControls('firstName')?.touched &&
+                    getControls('firstName')?.errors,
+                  success:
+                    getControls('firstName')?.touched &&
+                    !getControls('firstName')?.errors
+                }"
+              />
+              <div
+                *ngIf="
+                  getControls('firstName')?.errors &&
+                  getControls('firstName')?.touched
+                "
+                class="text-danger"
+              >
+                <small *ngIf="getControls('firstName')?.errors?.['required']"
+                  >First name is required.</small
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-lable">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                class="form-control"
+                formControlName="lastName"
+                [ngClass]="{
+                  error:
+                    getControls('lastName')?.touched &&
+                    getControls('lastName')?.errors,
+                  success:
+                    getControls('lastName')?.touched &&
+                    !getControls('lastName')?.errors
+                }"
+              />
+              <div
+                *ngIf="
+                  getControls('lastName')?.errors &&
+                  getControls('lastName')?.touched
+                "
+                class="text-danger"
+              >
+                <small *ngIf="getControls('lastName')?.errors?.['required']"
+                  >Last name is required.</small
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-lable">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                formControlName="email"
+                [ngClass]="{
+                  error:
+                    getControls('email')?.touched &&
+                    getControls('email')?.errors,
+                  success:
+                    getControls('email')?.touched &&
+                    !getControls('email')?.errors
+                }"
+              />
+              <div
+                *ngIf="
+                  getControls('email')?.errors && getControls('email')?.touched
+                "
+                class="text-danger"
+              >
+                <small *ngIf="getControls('email')?.errors?.['required']"
+                  >Email address is required.</small
+                >
+                <small *ngIf="getControls('email')?.errors?.['email']"
+                  >Please enter valid email address.</small
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-lable">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                formControlName="password"
+                [ngClass]="{
+                  error:
+                    getControls('password')?.touched &&
+                    getControls('password')?.errors,
+                  success:
+                    getControls('password')?.touched &&
+                    !getControls('password')?.errors
+                }"
+              />
+              <div
+                *ngIf="
+                  getControls('password')?.errors &&
+                  getControls('password')?.touched
+                "
+                class="text-danger"
+              >
+                <small *ngIf="getControls('password')?.errors?.['required']"
+                  >Password is required.</small
+                >
+                <small *ngIf="getControls('password')?.errors?.['minlength']"
+                  >Password length should be minimum 8 charecters.</small
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-lable"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="form-control"
+                formControlName="confirmPassword"
+                [ngClass]="{
+                  error:
+                    getControls('confirmPassword')?.touched &&
+                    getControls('confirmPassword')?.errors,
+                  success:
+                    getControls('confirmPassword')?.touched &&
+                    !getControls('confirmPassword')?.errors
+                }"
+              />
+              <div
+                *ngIf="
+                  getControls('confirmPassword')?.errors &&
+                  getControls('confirmPassword')?.touched
+                "
+                class="text-danger"
+              >
+                <small
+                  *ngIf="getControls('confirmPassword')?.errors?.['required']"
+                  >Password is required.</small
+                >
+                <small
+                  *ngIf="getControls('confirmPassword')?.errors?.['minlength']"
+                  >Password length should be minimum 8 charecters.</small
+                >
+              </div>
+              <div class="text-center">
+                <small *ngIf="passwordMatchErrorMessage" class="text-danger">{{
+                  passwordMatchErrorMessage
+                }}</small>
+                <small *ngIf="errorMessage" class="text-danger">{{
+                  errorMessage
+                }}</small>
+                <small *ngIf="registerSuccessMessage" class="text-success">{{
+                  registerSuccessMessage
+                }}</small>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="registerForm.invalid"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

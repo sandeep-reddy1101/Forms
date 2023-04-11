@@ -1,0 +1,12 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <form [formGroup]="fileForm" (ngSubmit)="onSubmit()">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="file" name="file" formControlName="file" aria-label="file" aria-describedby="button-addon2">
+                    <button [disabled]="fileForm.invalid" class="btn btn-outline-primary" type="submit" id="button-addon2">Submit</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Login Form</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onsubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+              />
+              <div
+                *ngIf="
+                  getControls('email')?.touched &&
+                  getControls('email')?.errors
+                "
+              >
+                <small
+                  *ngIf="getControls('email')?.errors?.['email']"
+                  class="text-danger"
+                >
+                  Please enter a valid email address.
+                </small>
+                <small
+                  *ngIf="getControls('email')?.errors?.['required']"
+                  class="text-danger"
+                >
+                  Email address is required.
+                </small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+              />
+              <div
+                *ngIf="
+                  getControls('password')?.touched &&
+                  getControls('password')?.errors
+                "
+              >
+                <small
+                  *ngIf="getControls('password')?.errors?.['minlength']"
+                  class="text-danger"
+                >
+                  Password should be atleast 8 charectors.
+                </small>
+                <small
+                  *ngIf="getControls('password')?.errors?.['required']"
+                  class="text-danger"
+                >
+                  Password is required.
+                </small>
+              </div>
+              <small *ngIf="errorMessage" class="text-danger">{{errorMessage}}</small>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="btn btn-success"
+              >
+                Submit
+              </button>
+              <a class="text-primary next-line" [routerLink]="['/register']">Not an user? Create account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
